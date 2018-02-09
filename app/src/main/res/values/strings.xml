@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FreeMessageSender</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Настройки</string>
+    <string name="navigation_description">Отправка бесплаток без заморочек</string>
+    <string name="sms">Все контакты</string>
+    <string name="search_btn">Поиск</string>
+    <string name="title_activity_settings">Настройки</string>
+
+
+    <string name="pref_header_general">Общие</string>
+    <string name="title_activity_favorite_contacts">FavoriteContacts</string>
+</resources>

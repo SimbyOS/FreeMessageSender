@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_description">Отправка бесплаток без заморочек</string>
+    <string name="sms">Все контакты</string>
+    <string name="search_btn">Поиск</string>
+</resources>

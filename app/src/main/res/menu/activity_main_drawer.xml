@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Избранные контакты">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/favcont"
+                    android:icon="@drawable/ic_face_black_36dp"
+                    android:title="Избранные" />
+            </group>
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:checked="true"
+            android:icon="@drawable/ic_feedback_white_36dp"
+            android:title="@string/sms" />
+    </group>
+    <item android:title="Параметры">
+        <menu>
+    <group
+        android:checkableBehavior="all"
+        android:enabled="true"
+        android:menuCategory="system">
+        <item
+            android:id="@+id/settingsitem"
+            android:checkable="false"
+            android:icon="@drawable/ic_settings_applications_black_36dp"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/exitItem"
+            android:checkable="false"
+            android:icon="@drawable/mr_dialog_close_light"
+            android:title="Выход" />
+    </group>
+        </menu>
+    </item>
+</menu>

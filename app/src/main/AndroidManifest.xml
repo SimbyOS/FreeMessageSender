@@ -42,6 +42,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fms.simbyos.freemessagesender.MainActivity" />
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1907837526867283~2333052476"/>
     </application>
 
 </manifest>

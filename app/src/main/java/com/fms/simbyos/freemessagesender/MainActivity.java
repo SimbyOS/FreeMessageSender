@@ -2,7 +2,6 @@ package com.fms.simbyos.freemessagesender;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -18,19 +17,24 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.pm.ShortcutInfoCompat;
-import android.support.v4.content.pm.ShortcutManagerCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -58,6 +62,32 @@ public class MainActivity extends AppCompatActivity
     ListView contactList;
     LinearLayout linearLayout;
     private ContactAdapter contactAdapter;
+    InterstitialAd mInterstitialAd;
+    public void LoadAdd(){
+        MobileAds.initialize(this, "ca-app-pub-1907837526867283~2333052476");
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-1907837526867283/4268950670");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                if (!mInterstitialAd.isLoaded() && !mInterstitialAd.isLoading()) {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("623B1B7759D51209294A77125459D9B7").addTestDevice("C07AF1687B80C3A74C718498EF9B938A").build());
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                Log.e("mInterstitialAd", String.valueOf(i));
+            }
+
+            @Override
+            public void onAdLoaded() {
+                Log.e("mInterstitialAd", "Loaded");
+            }
+
+        });
+    }
 
     private ArrayList<Contact> getContactList(Context ctx) {
 
@@ -199,9 +229,6 @@ public class MainActivity extends AppCompatActivity
                     final ShortcutInfoCompat shortcut = new ShortcutInfoCompat.Builder(getApplicationContext(), UUID.randomUUID().toString())
                             .setShortLabel(cont.ContactName)
                             .setLongLabel(cont.ContactName)
-                            .setIcon(R.drawable.ic_face_black_36dp)
-
-
                             .setIntent(intent)
                             .build();
                     ShortcutManagerCompat.requestPinShortcut(getApplicationContext(), shortcut, null);
@@ -249,7 +276,7 @@ public class MainActivity extends AppCompatActivity
         registerForContextMenu(contactList);
         ContactsLoadTask task = new ContactsLoadTask();
         task.execute();
-
+        LoadAdd();
         this.contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                     @Override
                                                     public void onItemClick(AdapterView<?> adapterView, final View view, int i, long l) {
@@ -310,12 +337,22 @@ public class MainActivity extends AppCompatActivity
                                                                     startActivity(intent2);
                                                                     Snackbar.make(view, "Запрос выполнен.", 3000)
                                                                             .show();
+                                                                    if (mInterstitialAd.isLoaded()) {
+                                                                        mInterstitialAd.show();
+                                                                    } else {
+                                                                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                                                                    }
                                                                 }
                                                             });
                                                             ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
                                                                 public void onClick(DialogInterface dialog, int arg1) {
                                                                     Snackbar.make(view, "Ну, нет так нет.", 3000)
                                                                             .show();
+                                                                    if (mInterstitialAd.isLoaded()) {
+                                                                        mInterstitialAd.show();
+                                                                    } else {
+                                                                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                                                                    }
                                                                 }
                                                             }).show();
 
@@ -413,11 +450,21 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(id == R.id.favcont){
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
       Intent intent = new Intent(this,FavoriteContacts.class);
       startActivity(intent);
         }
 
         if (id == R.id.settingsitem) {
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }

@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "583062069056",
+    "firebase_url": "https://freemessagesender.firebaseio.com",
+    "project_id": "freemessagesender",
+    "storage_bucket": "freemessagesender.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583062069056:android:dd79d167b90c9500",
+        "android_client_info": {
+          "package_name": "com.fms.simbyos.freemessagesender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583062069056-7su7garnqtll500vvgtce2ddnrofm4p4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fms.simbyos.freemessagesender",
+            "certificate_hash": "0e7d38deb8dc6da6564cf9c2b596865b13482399"
+          }
+        },
+        {
+          "client_id": "583062069056-hninph85kau6r349k0cuh2ctbapf6am8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fms.simbyos.freemessagesender",
+            "certificate_hash": "4152f185bbf8c15150078cb0be6b604f178f35bc"
+          }
+        },
+        {
+          "client_id": "583062069056-7869jd6o570f4v5rehsvkg80bb6qes8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXqOHqI-yH02cUHUFsr9dI0J-pHmVcO7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583062069056-7869jd6o570f4v5rehsvkg80bb6qes8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
